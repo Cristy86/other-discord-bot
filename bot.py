@@ -32,7 +32,7 @@ async def on_ready():
     print(f'Bot Version: {bot_version}')
     print(f'Active on: {len(bot.guilds)} Servers.')
     print(f'{nl4}')
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"e~help | {len(bot.users)} users."))
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"e-help | {len(bot.users)} users."))
 
 @bot.command()
 async def uptime(ctx):
