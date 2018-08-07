@@ -118,7 +118,7 @@ class API:
             async with aiohttp.ClientSession() as session:
                 async with session.post("https://cleverbot.io/1.0/create", data=params) as conversation:
                     data = await conversation.json()
-                    result = data["response"]
+                    result = data
                     await ctx.send(f"💬 | **`{result}`** | {ctx.author.mention}")
 
     @commands.command()
