@@ -116,9 +116,9 @@ class API:
 		}
         async with ctx.typing():
             async with aiohttp.ClientSession() as session:
-                async with session.post("https://cleverbot.io/1.0/create", data=params) as conversation:
+                async with session.post("https://cleverbot.io/1.0/ask", data=params) as conversation:
                     data = await conversation.json()
-                    result = data
+                    result = data["response"]
                     await ctx.send(f"💬 | **`{result}`** | {ctx.author.mention}")
 
     @commands.command()
@@ -238,8 +238,8 @@ class API:
     @commands.command(pass_context=True)
     @commands.guild_only()
     @commands.cooldown(1.0, 20.0, commands.BucketType.user)
-    async def mystb(self, ctx, *, text:str):
-        """Uploads text to mystb."""
+    async def mystbin(self, ctx, *, text:str):
+        """Uploads text to mystb.in."""
         if ctx.author.id in BLOCKED:
             return
         text = self.cleanup_code(text)
