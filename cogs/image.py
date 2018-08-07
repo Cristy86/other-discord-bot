@@ -227,7 +227,7 @@ class ImageCog:
         member = member or ctx.author
 
         async with ctx.typing():
-            x = Image.open("bot-rewrite/cogs/images/meme1.png")
+            x = Image.open("app/cogs/images/meme1.png")
             async with aiohttp.ClientSession() as cs:
                 async with cs.get(member.avatar_url_as(format='png')) as r:
                     b = BytesIO(await r.read())
