@@ -1,0 +1,8 @@
+-e git+https://github.com/Rapptz/discord.py@rewrite#egg=discord.py
+aiohttp
+websockets
+Pillow
+praw
+psutil
+pyfiglet
+-e git+https://github.com/Gorialis/jishaku@master#egg=jishaku
