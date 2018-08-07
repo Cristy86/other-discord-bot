@@ -19,7 +19,7 @@ description = '''PythonBot but in rewrite.'''
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('e~'), description=description)
 bot.remove_command('help')
 bot.launch_time = datetime.utcnow()
-startup_extensions = ['cogs.admin','cogs.eh','cogs.cmds','cogs.mod','cogs.info','cogs.image','cogs.music','cogs.events','jishaku','cogs.api']
+startup_extensions = ['cogs.admin','cogs.eh','cogs.cmds','cogs.mod','cogs.info','cogs.image','cogs.events','jishaku','cogs.api']
 nl4 = "------"
 
 
