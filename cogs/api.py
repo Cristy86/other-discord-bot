@@ -17,7 +17,7 @@ import random
 from datetime import datetime
 import psutil
 from pyfiglet import figlet_format
-from utils.constants import AGREY_EMBED, OTHER_ERROR_EMOJI, BLOCKED, BLACK_EMBED
+from utils.constants import GREY_EMBED, OTHER_ERROR_EMOJI, BLOCKED, BLACK_EMBED
 import praw
 
 class API:
@@ -116,7 +116,7 @@ class API:
 		}
         async with ctx.typing():
             async with aiohttp.ClientSession() as session:
-                async with session.post("https://cleverbot.io/1.0/ask", data=params) as conversation:
+                async with session.post("https://cleverbot.io/1.0/create", data=params) as conversation:
                     data = await conversation.json()
                     result = data["response"]
                     await ctx.send(f"💬 | **`{result}`** | {ctx.author.mention}")
