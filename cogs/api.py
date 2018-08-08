@@ -45,7 +45,7 @@ class API:
             submission = next(x for x in memes_submissions if not x.stickied)
         return submission.url
 
-    def do_softwaregore():
+    def do_softwaregore(self):
         softwaregore_submissions = reddit.subreddit('softwaregore').hot()
         post_to_pick = random.randint(1, 100)
         for i in range(0, post_to_pick):
