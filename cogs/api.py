@@ -262,11 +262,16 @@ class API:
         """Generates a random r/memes from reddit."""
         if ctx.author.id in BLOCKED:
             return
-	async with ctx.typing():
-            b = await self.bot.loop.run_in_executor(None, self.do_meme)
-            embed = discord.Embed(color=BLACK_EMBED)
-            embed.set_image(url=b)
-            await ctx.send(embed=embed)
+        try:
+            async with ctx.typing():
+                b = await self.bot.loop.run_in_executor(None, self.do_meme)
+                embed = discord.Embed(color=BLACK_EMBED)
+                embed.set_image(url=b)
+                await ctx.send(embed=embed)
+        except Exception as e:
+            await ctx.message.add_reaction(OTHER_ERROR_EMOJI)
+            await ctx.send(f'```py\n{type(e).__name__}: {str(e)}\n```')
+
 
     @commands.command()
     @commands.guild_only()
@@ -275,11 +280,15 @@ class API:
         """Generates a random r/softwaregore from reddit."""
         if ctx.author.id in BLOCKED:
             return
-	async with ctx.typing():
-            b = await self.bot.loop.run_in_executor(None, self.do_softwaregore)
-            embed = discord.Embed(color=BLACK_EMBED)
-            embed.set_image(url=b)
-            await ctx.send(embed=embed)
+        try:
+            async with ctx.typing():
+                b = await self.bot.loop.run_in_executor(None, self.do_softwaregore)
+                embed = discord.Embed(color=BLACK_EMBED)
+                embed.set_image(url=b)
+                await ctx.send(embed=embed)
+        except Exception as e:
+            await ctx.message.add_reaction(OTHER_ERROR_EMOJI)
+            await ctx.send(f'```py\n{type(e).__name__}: {str(e)}\n```')
 
 def setup(bot):
     bot.add_cog(API(bot))
