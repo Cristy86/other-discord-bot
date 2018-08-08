@@ -257,7 +257,7 @@ class API:
 
     @commands.command()
     @commands.guild_only()
-    @commands.cooldown(1.0, 20.0, commands.BucketType.user)
+    @commands.cooldown(1.0, 10.0, commands.BucketType.user)
     async def meme(self, ctx):
         """Generates a random r/memes from reddit."""
         if ctx.author.id in BLOCKED:
@@ -275,7 +275,7 @@ class API:
 
     @commands.command()
     @commands.guild_only()
-    @commands.cooldown(1.0, 20.0, commands.BucketType.user)
+    @commands.cooldown(1.0, 10.0, commands.BucketType.user)
     async def softwaregore(self, ctx):
         """Generates a random r/softwaregore from reddit."""
         if ctx.author.id in BLOCKED:
