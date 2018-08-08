@@ -45,7 +45,14 @@ class API:
             submission = next(x for x in memes_submissions if not x.stickied)
         return submission.url
 
-    @commands.command(pass_context=True)
+    def do_softwaregore():
+        softwaregore_submissions = reddit.subreddit('softwaregore').hot()
+        post_to_pick = random.randint(1, 100)
+        for i in range(0, post_to_pick):
+            submission = next(x for x in softwaregore_submissions if not x.stickied)
+        return submission.url
+
+    @commands.command()
     @commands.guild_only()
     @commands.cooldown(1.0, 30.0, commands.BucketType.user)
     async def tinyurl(self, ctx, *, url: str):
@@ -64,7 +71,7 @@ class API:
         except:
             await ctx.send(f"<{OTHER_ERROR_EMOJI}> **`{url}` is invalid. Please enter a valid URL.**")
 
-    @commands.command(pass_context=True)
+    @commands.command()
     @commands.guild_only()
     @commands.cooldown(1.0, 30.0, commands.BucketType.user)
     async def osu(self, ctx, user: str, hex: int = "4b4c4f"):
@@ -161,7 +168,7 @@ class API:
         except Exception as e:
             await ctx.send(f"<{OTHER_ERROR_EMOJI}> **The API might be unavailable now.**\n\n```py\n{type(e).__name__}: {str(e)}\n```")
 
-    @commands.command(pass_context=True)
+    @commands.command()
     @commands.guild_only()
     @commands.cooldown(1.0, 20.0, commands.BucketType.user)
     async def bird(self, ctx):
@@ -222,7 +229,7 @@ class API:
         except Exception as e:
             await ctx.send(f"<{OTHER_ERROR_EMOJI}> **The API might be unavailable now.**\n\n```py\n{type(e).__name__}: {str(e)}\n```")
 
-    @commands.command(pass_context=True)
+    @commands.command()
     @commands.guild_only()
     @commands.cooldown(1.0, 20.0, commands.BucketType.user)
     async def hastebin(self, ctx, *, text:str):
@@ -235,7 +242,7 @@ class API:
                 post = await post.json()
                 await ctx.send(f"<https://hastebin.com/{post['key']}>")
 
-    @commands.command(pass_context=True)
+    @commands.command()
     @commands.guild_only()
     @commands.cooldown(1.0, 20.0, commands.BucketType.user)
     async def mystbin(self, ctx, *, text:str):
@@ -248,18 +255,27 @@ class API:
                 post = await post.json()
                 await ctx.send(f"<http://mystb.in/{post['key']}>")
 
-    @commands.command(pass_context=True)
+    @commands.command()
     @commands.guild_only()
     @commands.cooldown(1.0, 20.0, commands.BucketType.user)
     async def meme(self, ctx):
-        """Generates a random meme from reddit."""
+        """Generates a random r/memes from reddit."""
         async with ctx.typing():
             b = await self.bot.loop.run_in_executor(None, self.do_meme)
             embed = discord.Embed(color=BLACK_EMBED)
             embed.set_image(url=b)
             await ctx.send(embed=embed)
 
-
+    @commands.command()
+    @commands.guild_only()
+    @commands.cooldown(1.0, 20.0, commands.BucketType.user)
+    async def softwaregore(self, ctx):
+        """Generates a random r/softwaregore from reddit."""
+        async with ctx.typing():
+            b = await self.bot.loop.run_in_executor(None, self.do_softwaregore)
+            embed = discord.Embed(color=BLACK_EMBED)
+            embed.set_image(url=b)
+            await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(API(bot))
