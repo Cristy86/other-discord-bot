@@ -46,7 +46,7 @@ class API:
         return submission.url
 
     def do_softwaregore(self):
-        softwaregore_submissions = reddit.subreddit('softwaregore').hot()
+        softwaregore_submissions = self.reddit.subreddit('softwaregore').hot()
         post_to_pick = random.randint(1, 100)
         for i in range(0, post_to_pick):
             submission = next(x for x in softwaregore_submissions if not x.stickied)
