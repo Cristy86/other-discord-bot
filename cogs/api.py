@@ -260,7 +260,9 @@ class API:
     @commands.cooldown(1.0, 20.0, commands.BucketType.user)
     async def meme(self, ctx):
         """Generates a random r/memes from reddit."""
-        async with ctx.typing():
+        if ctx.author.id in BLOCKED:
+            return
+	async with ctx.typing():
             b = await self.bot.loop.run_in_executor(None, self.do_meme)
             embed = discord.Embed(color=BLACK_EMBED)
             embed.set_image(url=b)
@@ -271,7 +273,9 @@ class API:
     @commands.cooldown(1.0, 20.0, commands.BucketType.user)
     async def softwaregore(self, ctx):
         """Generates a random r/softwaregore from reddit."""
-        async with ctx.typing():
+        if ctx.author.id in BLOCKED:
+            return        
+	async with ctx.typing():
             b = await self.bot.loop.run_in_executor(None, self.do_softwaregore)
             embed = discord.Embed(color=BLACK_EMBED)
             embed.set_image(url=b)
