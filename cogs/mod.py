@@ -181,6 +181,7 @@ class Moderation:
         embed.timestamp = datetime.utcnow()
         msg = await ctx.send(embed=embed)
         await msg.add_reaction('\N{THUMBS UP SIGN}')
+        await msg.add_reaction('\N{SHRUG}')
         await msg.add_reaction('\N{THUMBS DOWN SIGN}')
 
     @commands.has_permissions(manage_guild=True)
