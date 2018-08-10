@@ -84,7 +84,7 @@ class Fun:
 
         embed = discord.Embed(color=random_user.color.value)
         embed.set_author(name=f"{ctx.author}", icon_url=ctx.author.avatar_url)
-        embed.description = f"The winner of **{text}** is: **{random_user.name}**!\n**`{random_user.id}`**"
+        embed.description = f"The winner of **{text}** is: **{random_user.name}**!\n**`{random_user.id} BOT: {random_user.bot}`**"
         embed.set_image(url=random_user.avatar_url)
         embed.set_footer(text=f"{self.bot.user.name}")
         embed.timestamp = datetime.utcnow()
