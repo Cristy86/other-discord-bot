@@ -173,7 +173,7 @@ class Admin:
             embed.description = f'```py\n{e.__class__.__name__}: {e}\n```'
             embed.set_footer(text=f"That took {start - end:.2f}", icon_url='https://cdn.discordapp.com/emojis/448428643543416832.png?v=1')
             embed.timestamp = datetime.datetime.utcnow()
-            return await ctx.send(embed=embed)
+            return await ctx.author.send(embed=embed)
 
         func = env['func']
         try:
@@ -189,7 +189,7 @@ class Admin:
             embed.description = f'```py\n{value}{traceback.format_exc()}\n```'
             embed.set_footer(text=f"That took {start - end:.2f}", icon_url='https://cdn.discordapp.com/emojis/448428643543416832.png?v=1')
             embed.timestamp = datetime.datetime.utcnow()
-            await ctx.send(embed=embed)
+            await ctx.author.send(embed=embed)
         else:
             value = stdout.getvalue()
             try:
@@ -206,7 +206,7 @@ class Admin:
                     embed.description = f'```py\n{value}\n```'
                     embed.set_footer(text=f"That took {start - end:.2f}", icon_url='https://cdn.discordapp.com/emojis/448428643543416832.png?v=1')
                     embed.timestamp = datetime.datetime.utcnow()
-                    await ctx.send(embed=embed)
+                    await ctx.author.send(embed=embed)
             else:
                 end = time.perf_counter()
                 self._last_result = ret
@@ -215,7 +215,7 @@ class Admin:
                 embed.description = f'```py\n{value}{ret}\n```'
                 embed.set_footer(text=f"That took {start - end:.2f}", icon_url='https://cdn.discordapp.com/emojis/448428643543416832.png?v=1')
                 embed.timestamp = datetime.datetime.utcnow()
-                await ctx.send(embed=embed)
+                await ctx.author.send(embed=embed)
 
     @commands.command(pass_context=True, aliases=['clear-console','cls-c'])
     async def console(self, ctx):
