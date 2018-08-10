@@ -176,7 +176,7 @@ class Moderation:
             return
         
         embed = discord.Embed(color=0x000000)
-        embed.description = f"**`{text}`**"
+        embed.description = f"{text}"
         embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
         embed.timestamp = datetime.utcnow()
         msg = await ctx.send(embed=embed)
