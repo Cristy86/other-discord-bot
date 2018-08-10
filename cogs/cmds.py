@@ -17,7 +17,7 @@ import random
 from datetime import datetime
 import psutil
 from pyfiglet import figlet_format
-from utils.constants import OTHER_ERROR_EMOJI, BLOCKED
+from utils.constants import OTHER_ERROR_EMOJI, BLOCKED, LOADING_EMOJI
 
 bot_version = "0.3.5"
 
@@ -122,10 +122,6 @@ class Fun:
         if percent < 50:
             result = "**`Friendzone.`** :four_leaf_clover: :pray:"
 
-        wait = await ctx.send("<a:loading_:474147784518270976> **`Wait for result.`**")
-        await asyncio.sleep(5)
-        await wait.delete()
-
         embed = discord.Embed(color=0x000000)
         embed.title = "- - Love calculator - -"
         embed.description = f"**`{user.display_name} + {user2.display_name}`**"
@@ -150,13 +146,11 @@ class Fun:
 
 
 
+        await ctx.message.add_reaction(LOADING_EMOJI)
         content = text
         webhook = await ctx.channel.create_webhook(name=f"{user.name}#{user.discriminator}")
-
-        wait = await ctx.send("<a:loading_:474147784518270976> **`Wait for result.`**")
-        await asyncio.sleep(5)
-        await wait.delete()
-
+        
+        await ctx.message.remove_reaction(LOADING_EMOJI, member=ctx.me)
         await webhook.send(content, avatar_url=user.avatar_url_as(format='png'))
         await webhook.delete()
 
@@ -172,9 +166,6 @@ class Fun:
             return
         
         results = ["It is certain"," It is decidedly so","Without a doubt","Yes, definitely","You may rely on it","As I see it, yes"," Most likely","Outlook good","Yes","Signs point to yes"," Reply hazy try again","Ask again later","Better not tell you now","Cannot predict now","Concentrate and ask again","Don't count on it","My reply is no","My sources say no","Outlook not so good","Very doubtful"]
-        wait = await ctx.send("<a:loading_:474147784518270976> **`Wait for result.`**")
-        await asyncio.sleep(1)
-        await wait.delete()
         await ctx.send(f"The 🎱 says: **`{random.choice(results)}.`**")
 
 
