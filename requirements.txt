@@ -7,4 +7,3 @@ psutil
 pyfiglet
 youtube_dl
 -e git+https://github.com/Gorialis/jishaku@master#egg=jishaku
--e git+https://github.com/PapyrusThePlant/strawpoll.py@master#egg=strawpoll.py
