@@ -243,7 +243,7 @@ class Moderation:
         """Mutes an user."""
         if reason is None:
             reason = 'No reason.'
-        await ctx.channel.set_permissions(ctx.author,   read_messages=True,
+        await ctx.channel.set_permissions(user,         read_messages=True,
                                                         send_messages=False, reason=reason)
         await ctx.send(f'<{OTHER_SUCCESS_EMOJI}> **`Done.`**')
         try:
@@ -266,7 +266,7 @@ class Moderation:
         """Unmutes an user."""
         if reason is None:
             reason = 'No reason.'
-        await ctx.channel.set_permissions(ctx.author,   read_messages=True,
+        await ctx.channel.set_permissions(user,         read_messages=True,
                                                         send_messages=True, reason=reason)
         await ctx.send(f'<{OTHER_SUCCESS_EMOJI}> **`Done.`**')
         try:
