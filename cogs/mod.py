@@ -235,7 +235,7 @@ class Moderation:
     async def mute(self, ctx):
         """Displays you some mute commands."""
         if ctx.invoked_subcommand is None:
-                await ctx.send(f'<{OTHER_ERROR_EMOJI}> **`Incorrect random subcommand passed. Try {ctx.prefix}help random`**')
+                await ctx.send(f'<{OTHER_ERROR_EMOJI}> **`Incorrect random subcommand passed. Try {ctx.prefix}help mute`**')
     
     @mute.command()
     @commands.has_permissions(manage_channels=True)
