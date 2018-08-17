@@ -49,7 +49,7 @@ class Moderation:
                 return amsg.author.id==target.id
             return True
         await ctx.channel.purge(limit=num, check=msgcheck)
-        await ctx.send(f'<a:TickGreen:466640991399706625> Deleted **{num}** messages for you.', delete_after=10)
+        await ctx.send(f'<{OTHER_SUCCESS_EMOJI}> Deleted **{num}** messages for you.', delete_after=10)
 
     @commands.has_permissions(kick_members=True)
     @commands.guild_only()
@@ -71,10 +71,10 @@ class Moderation:
         if ctx.author.top_role <= user.top_role and ctx.author != ctx.guild.owner:
             return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Your top role is lower or equal to member's/Can't kick `{user}`.**")
         if reason is None:
-            reason = f'{user} kicked by {ctx.author} [ID: {ctx.author.id}]'
+            reason = 'No reason.'
         
         await ctx.guild.kick(user, reason=reason)
-        await ctx.send('<a:TickGreen:466640991399706625> **Done.**')
+        await ctx.send('<{OTHER_SUCCESS_EMOJI}> **Done.**')
         try:
             embed = discord.Embed(color=0x000000)
             embed.title = "Alert System"
@@ -108,7 +108,7 @@ class Moderation:
         if ctx.author.top_role <= user.top_role and ctx.author != ctx.guild.owner:
             return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Your top role is lower or equal to member's/Can't softban `{user}`.**")
         if reason is None:
-            reason = f'{user} softbanned by {ctx.author} [ID: {ctx.author.id}]'
+            reason = 'No reason.'
         
         await ctx.guild.ban(user, reason=reason)
         await ctx.guild.unban(user, reason=reason)
@@ -147,10 +147,10 @@ class Moderation:
         if ctx.author.top_role <= user.top_role and ctx.author != ctx.guild.owner:
             return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Your top role is lower or equal to member's/Can't softban `{user}`.**")
         if reason is None:
-            reason = f'{user} softbanned by {ctx.author} [ID: {ctx.author.id}]'
+            reason = 'No reason.'
         
         await ctx.guild.ban(user, reason=reason)
-        await ctx.send('<a:TickGreen:466640991399706625> **Done.**')
+        await ctx.send('<{OTHER_SUCCESS_EMOJI}> **Done.**')
         try:
             embed = discord.Embed(color=0x000000)
             embed.title = "Alert System"
@@ -204,22 +204,22 @@ class Moderation:
         if ctx.author.top_role <= user.top_role and ctx.author != ctx.guild.owner:
             return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Your top role is lower or equal to member's/Can't warn `{user}`.**")
         if reason is None:
-            reason = f'{user} warned by {ctx.author} [ID: {ctx.author.id}]'
+            reason = 'No reason.'
         if logChannel is None:
             return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **I need a logChannel. [example: #general]**")
         
         embed = discord.Embed(color=0x000000)
         embed.title = "Alert System"
-        embed.description = f"**`{user} warned.`** :bangbang:"
+        embed.description = f"**`{user} warned.`** \N{DOUBLE EXCLAMATION MARK}"
         embed.add_field(name="`Moderator`", value=f"**`{ctx.author}`**")
         embed.add_field(name="`Reason`", value=f"**`{reason}`**")
         await logChannel.send(embed=embed)
 
-        await ctx.send('<a:TickGreen:466640991399706625> **Done.**')
+        await ctx.send('<{OTHER_SUCCESS_EMOJI}> **Done.**')
         try:
             embed = discord.Embed(color=0x000000)
             embed.title = "Alert System"
-            embed.description = f"**`Looks like you got warned from {ctx.guild.name}`** :bangbang:"
+            embed.description = f"**`Looks like you got warned from {ctx.guild.name}`** \N{DOUBLE EXCLAMATION MARK}"
             embed.add_field(name="`Moderator`", value=f"**`{ctx.author}`**")
             embed.add_field(name="`Reason`", value=f"**`{reason}`**")
             await user.send(embed=embed)
@@ -229,5 +229,58 @@ class Moderation:
             await error.delete()
             pass
 
+    @commands.group()
+    @commands.guild_only()
+    @commands.has_permissions(manage_channel=True)
+    async def mute(self, ctx):
+        """Displays you some mute commands."""
+        if ctx.invoked_subcommand is None:
+                await ctx.send(f'<{OTHER_ERROR_EMOJI}> **`Incorrect random subcommand passed. Try {ctx.prefix}help random`**')
+    
+    @mute.command()
+    @commands.has_permissions(manage_channel=True)
+    async def add(self, ctx, user = discord.Member, *, reason: str = None):
+        """Mutes an user."""
+        if reason is None:
+            reason = 'No reason.'
+        await ctx.channel.set_permissions(ctx.author,   read_messages=True,
+                                                        send_messages=False, reason=reason)
+        await ctx.send(f'<{OTHER_SUCCESS_EMOJI}> **`Done.`**')
+        try:
+            embed = discord.Embed(color=0x000000)
+            embed.title = "Alert System"
+            embed.description = f"**`Looks like you got muted from {ctx.guild.name}`** \N{FACE WITHOUT MOUTH}"
+            embed.add_field(name="`Moderator`", value=f"**`{ctx.author}`**")
+            embed.add_field(name="`Reason`", value=f"**`{reason}`**")
+            await user.send(embed=embed)
+        except discord.Forbidden as e:
+            error = await ctx.send(f"<{OTHER_ERROR_EMOJI}> **`Looks like the user blocked me. DM message failed. Deleting this message in 5 seconds.`** ```py\n{type(e).__name__}: {e}\n```")
+            await asyncio.sleep(5)
+            await error.delete()
+            pass
+    
+    
+    @mute.command()
+    @commands.has_permissions(manage_channel=True)
+    async def remove(self, ctx, user = discord.Member, *, reason: str = None):
+        """Unmutes an user."""
+        if reason is None:
+            reason = 'No reason.'
+        await ctx.channel.set_permissions(ctx.author,   read_messages=True,
+                                                        send_messages=True, reason=reason)
+        await ctx.send(f'<{OTHER_SUCCESS_EMOJI}> **`Done.`**')
+        try:
+            embed = discord.Embed(color=0x000000)
+            embed.title = "Alert System"
+            embed.description = f"**`Looks like you got unmuted from {ctx.guild.name}`** \N{FACE WITHOUT MOUTH}"
+            embed.add_field(name="`Moderator`", value=f"**`{ctx.author}`**")
+            embed.add_field(name="`Reason`", value=f"**`{reason}`**")
+            await user.send(embed=embed)
+        except discord.Forbidden as e:
+            error = await ctx.send(f"<{OTHER_ERROR_EMOJI}> **`Looks like the user blocked me. DM message failed. Deleting this message in 5 seconds.`** ```py\n{type(e).__name__}: {e}\n```")
+            await asyncio.sleep(5)
+            await error.delete()
+            pass
+        
 def setup(bot):
     bot.add_cog(Moderation(bot))
