@@ -231,14 +231,14 @@ class Moderation:
 
     @commands.group()
     @commands.guild_only()
-    @commands.has_permissions(manage_channel=True)
+    @commands.has_permissions(manage_channels=True)
     async def mute(self, ctx):
         """Displays you some mute commands."""
         if ctx.invoked_subcommand is None:
                 await ctx.send(f'<{OTHER_ERROR_EMOJI}> **`Incorrect random subcommand passed. Try {ctx.prefix}help random`**')
     
     @mute.command()
-    @commands.has_permissions(manage_channel=True)
+    @commands.has_permissions(manage_channels=True)
     async def add(self, ctx, user = discord.Member, *, reason: str = None):
         """Mutes an user."""
         if reason is None:
@@ -261,7 +261,7 @@ class Moderation:
     
     
     @mute.command()
-    @commands.has_permissions(manage_channel=True)
+    @commands.has_permissions(manage_channels=True)
     async def remove(self, ctx, user = discord.Member, *, reason: str = None):
         """Unmutes an user."""
         if reason is None:
