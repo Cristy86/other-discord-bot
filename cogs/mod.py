@@ -239,7 +239,7 @@ class Moderation:
     
     @mute.command()
     @commands.has_permissions(manage_channels=True)
-    async def add(self, ctx, user = discord.Member, *, reason: str = None):
+    async def add(self, ctx, user: discord.Member, *, reason: str = None):
         """Mutes an user."""
         if reason is None:
             reason = 'No reason.'
@@ -262,7 +262,7 @@ class Moderation:
     
     @mute.command()
     @commands.has_permissions(manage_channels=True)
-    async def remove(self, ctx, user = discord.Member, *, reason: str = None):
+    async def remove(self, ctx, user: discord.Member, *, reason: str = None):
         """Unmutes an user."""
         if reason is None:
             reason = 'No reason.'
