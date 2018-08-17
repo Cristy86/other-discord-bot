@@ -63,7 +63,7 @@ class Moderation:
         if ctx.author.bot:
             return
         if self.bot.owner_id == user.id:
-            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Can't ban the owner of this bot.**")
+            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Can't kick the owner of this bot.**")
         if user == ctx.guild.owner:
             return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Can't kick guild owner.**")
         if ctx.me.top_role <= user.top_role:
@@ -100,7 +100,7 @@ class Moderation:
         if ctx.author.bot:
             return
         if self.bot.owner_id == user.id:
-            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Can't ban the owner of this bot.**")
+            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Can't softban the owner of this bot.**")
         if user == ctx.guild.owner:
             return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Can't softban guild owner.**")
         if ctx.me.top_role <= user.top_role:
@@ -141,11 +141,11 @@ class Moderation:
         if self.bot.owner_id == user.id:
             return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Can't ban the owner of this bot.**")
         if user == ctx.guild.owner:
-            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Can't softban guild owner.**")
+            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Can't ban guild owner.**")
         if ctx.me.top_role <= user.top_role:
-            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **My top role is lower or equal to member's top role, can't softban `{user}`.**")
+            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **My top role is lower or equal to member's top role, can't ban `{user}`.**")
         if ctx.author.top_role <= user.top_role and ctx.author != ctx.guild.owner:
-            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Your top role is lower or equal to member's/Can't softban `{user}`.**")
+            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Your top role is lower or equal to member's/Can't ban `{user}`.**")
         if reason is None:
             reason = 'No reason.'
         
@@ -244,13 +244,13 @@ class Moderation:
         if ctx.author.bot:
             return
         if self.bot.owner_id == user.id:
-            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Can't ban the owner of this bot.**")
+            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Can't mute the owner of this bot.**")
         if user == ctx.guild.owner:
-            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Can't kick guild owner.**")
+            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Can't mute guild owner.**")
         if ctx.me.top_role <= user.top_role:
-            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **My top role is lower or equal to member's top role, can't kick `{user}`.**")
+            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **My top role is lower or equal to member's top role, can't mute `{user}`.**")
         if ctx.author.top_role <= user.top_role and ctx.author != ctx.guild.owner:
-            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Your top role is lower or equal to member's/Can't kick `{user}`.**")
+            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Your top role is lower or equal to member's/Can't mute `{user}`.**")
         if reason is None:
             reason = 'No reason.'
         await ctx.channel.set_permissions(user,         read_messages=True,
@@ -277,13 +277,13 @@ class Moderation:
         if ctx.author.bot:
             return
         if self.bot.owner_id == user.id:
-            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Can't ban the owner of this bot.**")
+            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Can't unmute the owner of this bot.**")
         if user == ctx.guild.owner:
-            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Can't kick guild owner.**")
+            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Can't unmute guild owner.**")
         if ctx.me.top_role <= user.top_role:
-            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **My top role is lower or equal to member's top role, can't kick `{user}`.**")
+            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **My top role is lower or equal to member's top role, can't unmute `{user}`.**")
         if ctx.author.top_role <= user.top_role and ctx.author != ctx.guild.owner:
-            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Your top role is lower or equal to member's/Can't kick `{user}`.**")
+            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Your top role is lower or equal to member's/Can't unmute `{user}`.**")
         if reason is None:
             reason = 'No reason.'
         await ctx.channel.set_permissions(user,         read_messages=True,
