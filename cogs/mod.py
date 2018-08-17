@@ -241,6 +241,16 @@ class Moderation:
     @commands.has_permissions(manage_channels=True)
     async def add(self, ctx, user: discord.Member, *, reason: str = None):
         """Mutes an user."""
+        if ctx.author.bot:
+            return
+        if self.bot.owner_id == user.id:
+            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Can't ban the owner of this bot.**")
+        if user == ctx.guild.owner:
+            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Can't kick guild owner.**")
+        if ctx.me.top_role <= user.top_role:
+            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **My top role is lower or equal to member's top role, can't kick `{user}`.**")
+        if ctx.author.top_role <= user.top_role and ctx.author != ctx.guild.owner:
+            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Your top role is lower or equal to member's/Can't kick `{user}`.**")
         if reason is None:
             reason = 'No reason.'
         await ctx.channel.set_permissions(user,         read_messages=True,
@@ -264,6 +274,16 @@ class Moderation:
     @commands.has_permissions(manage_channels=True)
     async def remove(self, ctx, user: discord.Member, *, reason: str = None):
         """Unmutes an user."""
+        if ctx.author.bot:
+            return
+        if self.bot.owner_id == user.id:
+            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Can't ban the owner of this bot.**")
+        if user == ctx.guild.owner:
+            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Can't kick guild owner.**")
+        if ctx.me.top_role <= user.top_role:
+            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **My top role is lower or equal to member's top role, can't kick `{user}`.**")
+        if ctx.author.top_role <= user.top_role and ctx.author != ctx.guild.owner:
+            return await ctx.send(f"<{OTHER_ERROR_EMOJI}> **Your top role is lower or equal to member's/Can't kick `{user}`.**")
         if reason is None:
             reason = 'No reason.'
         await ctx.channel.set_permissions(user,         read_messages=True,
