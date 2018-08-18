@@ -1,13 +1,7 @@
 import discord
 from discord.ext import commands
-import random
 
-import unicodedata
-import time
 import asyncio
-import aiohttp
-import io
-import platform
 import os
 
 from datetime import datetime
@@ -19,18 +13,17 @@ bot = commands.Bot(command_prefix=commands.when_mentioned_or('e-'), description=
 bot.remove_command('help')
 bot.launch_time = datetime.utcnow()
 startup_extensions = ['cogs.admin','cogs.music','cogs.eh','cogs.cmds','cogs.mod','cogs.info','cogs.image','cogs.events','jishaku','cogs.api']
-nl4 = "------"
 
 
 @bot.event
 async def on_ready():
     print('Logged in as:')
-    print(f'{nl4}')
+    print('------')
     print(f'Username: {bot.user.name}')
     print(f'ID: {bot.user.id}')
     print(f'Bot Version: {bot_version}')
     print(f'Active on: {len(bot.guilds)} Servers.')
-    print(f'{nl4}')
+    print('------')
     await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"e-help | {len(bot.users)} users."))
 
 @bot.command()
