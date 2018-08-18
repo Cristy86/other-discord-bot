@@ -80,7 +80,7 @@ class API:
             return
 	
         try:
-	    if color is None:
+	     if color is None:
                  color = "4b4c4f"
 
             embed = discord.Embed(color=0x000000)
