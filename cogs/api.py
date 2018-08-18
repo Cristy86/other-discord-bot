@@ -78,11 +78,10 @@ class API:
         """Generates an osu player."""
         if ctx.author.id in BLOCKED:
             return
+	 if color is None:
+             color = "4b4c4f"
 	
         try:
-	     if color is None:
-                 color = "4b4c4f"
-
             embed = discord.Embed(color=0x000000)
             embed.set_image(url=f"http://lemmmy.pw/osusig/sig.php?colour=hex{color}&uname={user}&pp=1&countryrank&removeavmargin&flagshadow&flagstroke&darktriangles&onlineindicator=undefined&xpbar&xpbarhex")
             embed.set_footer(text=f"{self.bot.user.name}")
