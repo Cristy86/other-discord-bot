@@ -70,7 +70,7 @@ class API:
                     await ctx.send(f'<{shorturl}>')
         except:
             await ctx.send(f"<{OTHER_ERROR_EMOJI}> **`{url}` is invalid. Please enter a valid URL.**")
-
+    
     @commands.command()
     @commands.guild_only()
     @commands.cooldown(1.0, 30.0, commands.BucketType.user)
@@ -78,9 +78,10 @@ class API:
         """Generates an osu player."""
         if ctx.author.id in BLOCKED:
             return
-	    try:
-	        if hex is None:
-		        hex = "4b4c4f"
+	
+        try:
+	    if hex is None:
+                hex = "4b4c4f"
 
             embed = discord.Embed(color=0x000000)
             embed.set_image(url=f"http://lemmmy.pw/osusig/sig.php?colour=hex{hex}&uname={user}&pp=1&countryrank&removeavmargin&flagshadow&flagstroke&darktriangles&onlineindicator=undefined&xpbar&xpbarhex")
@@ -88,7 +89,8 @@ class API:
             embed.timestamp = datetime.utcnow()
 
             await ctx.send(embed=embed)
-	    except Exception as e:
+	    
+        except Exception as e:
             await ctx.message.add_reaction(OTHER_ERROR_EMOJI)
             await ctx.send(f'```py\n{type(e).__name__}: {str(e)}\n```')
 
