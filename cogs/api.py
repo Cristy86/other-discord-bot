@@ -79,7 +79,7 @@ class API:
         if ctx.author.id in BLOCKED:
             return
 	 if color is None:
-             color = "4b4c4f"
+            color = "4b4c4f"
 	
         try:
             embed = discord.Embed(color=0x000000)
