@@ -9,7 +9,7 @@ from cogs.cmds import bot_version
 from utils.constants import BLOCKED
 
 
-bot = commands.Bot(command_prefix=commands.when_mentioned_or('e-'), description=description)
+bot = commands.Bot(command_prefix=commands.when_mentioned_or('e-'))
 bot.remove_command('help')
 bot.launch_time = datetime.utcnow()
 startup_extensions = ['cogs.admin','cogs.music','cogs.eh','cogs.cmds','cogs.mod','cogs.info','cogs.image','cogs.events','jishaku','cogs.api']
