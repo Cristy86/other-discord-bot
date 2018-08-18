@@ -78,7 +78,7 @@ class API:
         """Generates an osu player."""
         if ctx.author.id in BLOCKED:
             return
-	try:
+	 try:
 	    if hex is None:
 		hex = "4b4c4f"
 
@@ -88,7 +88,7 @@ class API:
             embed.timestamp = datetime.utcnow()
 
             await ctx.send(embed=embed)
-	    except Exception as e:
+	 except Exception as e:
             await ctx.message.add_reaction(OTHER_ERROR_EMOJI)
             await ctx.send(f'```py\n{type(e).__name__}: {str(e)}\n```')
 
