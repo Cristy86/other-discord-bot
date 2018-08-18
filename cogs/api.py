@@ -74,17 +74,17 @@ class API:
     @commands.command()
     @commands.guild_only()
     @commands.cooldown(1.0, 30.0, commands.BucketType.user)
-    async def osu(self, ctx, user: str, hex: int = None):
+    async def osu(self, ctx, user: str, color: int = None):
         """Generates an osu player."""
         if ctx.author.id in BLOCKED:
             return
 	
         try:
-	    if hex is None:
-                 hex = "4b4c4f"
+	    if color is None:
+                 color = "4b4c4f"
 
             embed = discord.Embed(color=0x000000)
-            embed.set_image(url=f"http://lemmmy.pw/osusig/sig.php?colour=hex{hex}&uname={user}&pp=1&countryrank&removeavmargin&flagshadow&flagstroke&darktriangles&onlineindicator=undefined&xpbar&xpbarhex")
+            embed.set_image(url=f"http://lemmmy.pw/osusig/sig.php?colour=hex{color}&uname={user}&pp=1&countryrank&removeavmargin&flagshadow&flagstroke&darktriangles&onlineindicator=undefined&xpbar&xpbarhex")
             embed.set_footer(text=f"{self.bot.user.name}")
             embed.timestamp = datetime.utcnow()
 
