@@ -78,7 +78,7 @@ class API:
         """Generates an osu player."""
         if ctx.author.id in BLOCKED:
             return
-	 try:
+	try:
 	    if hex is None:
 		hex = "4b4c4f"
 
