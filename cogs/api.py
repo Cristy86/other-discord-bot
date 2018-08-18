@@ -80,7 +80,7 @@ class API:
             return
 	
         try:
-	     if hex is None:
+	    if hex is None:
                  hex = "4b4c4f"
 
             embed = discord.Embed(color=0x000000)
