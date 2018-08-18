@@ -15,7 +15,6 @@ from cogs.cmds import bot_version
 from utils.constants import BLOCKED
 
 
-description = '''PythonBot but in rewrite.'''
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('e-'), description=description)
 bot.remove_command('help')
 bot.launch_time = datetime.utcnow()
