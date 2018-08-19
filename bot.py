@@ -9,7 +9,7 @@ from cogs.cmds import bot_version
 from utils.constants import BLOCKED
 
 
-bot = commands.Bot(command_prefix=commands.when_mentioned_or('e-'))
+bot = commands.Bot(command_prefix=commands.when_mentioned_or(os.getenv('BOT_PREFIX')))
 bot.remove_command('help')
 bot.launch_time = datetime.utcnow()
 startup_extensions = ['cogs.admin','cogs.music','cogs.eh','cogs.cmds','cogs.mod','cogs.info','cogs.image','cogs.events','jishaku','cogs.api']
@@ -24,7 +24,7 @@ async def on_ready():
     print(f'Bot Version: {bot_version}')
     print(f'Active on: {len(bot.guilds)} Servers.')
     print('------')
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"e-help | {len(bot.users)} users."))
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"{os.getenv('BOT_PREFIX')}help | {len(bot.users)} users."))
 
 @bot.command()
 async def uptime(ctx):
