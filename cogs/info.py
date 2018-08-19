@@ -174,27 +174,6 @@ class Information:
     @commands.command(pass_context=True)
     @commands.guild_only()
     @commands.cooldown(1.0, 20.0, commands.BucketType.user)
-    async def stats(self, ctx):
-        """Shows information about the bot."""
-        if ctx.author.id in BLOCKED:
-            return
-
-        if ctx.author.bot:
-            return
-
-        embed = discord.Embed(color=0x000000)
-        embed.title = f"{self.bot.user.name}'s stats"
-        embed.description = f"`{self.bot.user} is created by {self.bot.get_user(BOT_OWNER_ID)}.`\n`{len(self.bot.guilds)} guilds, {len(self.bot.emojis)} emojis, {len(self.bot.cogs)} cogs and {len(self.bot.users)} users.`\n\n:white_small_square: **Python Version:** **`{platform.python_version()}`** <:python_image:448428643543416832>\n:white_small_square: **discord.py Version:** **`{pkg_resources.get_distribution('discord.py').version}`** <:discord:453469273344442370>\n:white_small_square: **RAM Usage:** **`{psutil.virtual_memory().percent}%`** <:computer_ram:463269182209785866>\n:white_small_square: **CPU Usage:** **`{psutil.cpu_percent()}%`** <:cpu:453497845501394945>\n:white_small_square: **Process Memory: `{round(self.bot.process.memory_info().rss / 1024 / 1024)} MB`** :question:\n\N{WHITE SMALL SQUARE} **Websocket latency: `{round(self.bot.latency * 1000)}ms.`** \N{TABLE TENNIS PADDLE AND BALL}"
-        embed.set_thumbnail(url=self.bot.user.avatar_url)
-        embed.set_footer(text=f"{self.bot.user.name}")
-        embed.timestamp = datetime.utcnow()
-
-        await ctx.send(embed=embed)
-
-
-    @commands.command(pass_context=True)
-    @commands.guild_only()
-    @commands.cooldown(1.0, 20.0, commands.BucketType.user)
     async def userinfo(self, ctx, user: discord.Member = None):
         """Shows information about a user."""
         if ctx.author.id in BLOCKED:
