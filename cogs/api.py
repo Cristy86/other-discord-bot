@@ -51,25 +51,6 @@ class API:
         for i in range(0, post_to_pick):
             submission = next(x for x in softwaregore_submissions if not x.stickied)
         return submission.url
-
-    @commands.command()
-    @commands.guild_only()
-    @commands.cooldown(1.0, 30.0, commands.BucketType.user)
-    async def tinyurl(self, ctx, *, url: str):
-        """Generates a tinyurl."""
-        if ctx.author.id in BLOCKED:
-            return
-
-        if ctx.author.bot:
-            return
-
-        try:
-            async with aiohttp.ClientSession() as cs:
-                async with cs.get('https://tinyurl.com/api-create.php', params={'url': f"{url}"}) as resp:
-                    shorturl = await resp.text()
-                    await ctx.send(f'<{shorturl}>')
-        except:
-            await ctx.send(f"<{OTHER_ERROR_EMOJI}> **`{url}` is invalid. Please enter a valid URL.**")
     
     @commands.command()
     @commands.guild_only()
