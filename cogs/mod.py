@@ -74,7 +74,7 @@ class Moderation:
             reason = 'No reason.'
         
         await ctx.guild.kick(user, reason=reason)
-        await ctx.send('<{OTHER_SUCCESS_EMOJI}> **Done.**')
+        await ctx.send(f'<{OTHER_SUCCESS_EMOJI}> **Done.**')
         try:
             embed = discord.Embed(color=0x000000)
             embed.title = "Alert System"
@@ -112,7 +112,7 @@ class Moderation:
         
         await ctx.guild.ban(user, reason=reason)
         await ctx.guild.unban(user, reason=reason)
-        await ctx.send('<a:TickGreen:466640991399706625> **Done.**')
+        await ctx.send(f'<{OTHER_SUCCESS_EMOJI}> **Done.**')
         try:
             embed = discord.Embed(color=0x000000)
             embed.title = "Alert System"
@@ -150,7 +150,7 @@ class Moderation:
             reason = 'No reason.'
         
         await ctx.guild.ban(user, reason=reason)
-        await ctx.send('<{OTHER_SUCCESS_EMOJI}> **Done.**')
+        await ctx.send(f'<{OTHER_SUCCESS_EMOJI}> **Done.**')
         try:
             embed = discord.Embed(color=0x000000)
             embed.title = "Alert System"
@@ -215,7 +215,7 @@ class Moderation:
         embed.add_field(name="`Reason`", value=f"**`{reason}`**")
         await logChannel.send(embed=embed)
 
-        await ctx.send('<{OTHER_SUCCESS_EMOJI}> **Done.**')
+        await ctx.send(f'<{OTHER_SUCCESS_EMOJI}> **Done.**')
         try:
             embed = discord.Embed(color=0x000000)
             embed.title = "Alert System"
