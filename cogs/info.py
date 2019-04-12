@@ -62,7 +62,7 @@ class CodeBlock:
                 fmt = 'Could not find a language to compile with.'
             raise commands.BadArgument(fmt) from e
 
-class Information:
+class Information(commands.Cog):
     """Some commands that shows some information about something."""
 
     def __init__(self, bot):
