@@ -52,6 +52,27 @@ class API:
             submission = next(x for x in softwaregore_submissions if not x.stickied)
         return submission.url
     
+    @commands.command()	
+    @commands.guild_only()	
+    @commands.cooldown(1.0, 30.0, commands.BucketType.user)	
+    async def ask(self, ctx, *, question: str):	
+        """Uses cleverbot.io to talk with you."""	
+        if ctx.author.id in BLOCKED:	
+            return	
+
+         params = {	
+			"user": os.getenv('API_USER'),	
+			"key": os.getenv('API_KEY'),	
+			"nick": os.getenv('API_NICK'),	
+			"text": question	
+		}	
+        async with ctx.typing():	
+            async with aiohttp.ClientSession() as session:	
+                async with session.post("https://cleverbot.io/1.0/ask", data=params) as conversation:	
+                    data = await conversation.json()	
+                    result = data["response"]	
+                    await ctx.send(f"💬 | **`{result}`** | {ctx.author.mention}")	
+	
     @commands.command()
     @commands.guild_only()
     @commands.cooldown(1.0, 30.0, commands.BucketType.user)
