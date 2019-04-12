@@ -21,7 +21,7 @@ from io import BytesIO
 from typing import Union
 from utils.constants import BLOCKED
 
-class ImageCog:
+class ImageCog(commands.Cog):
     def __init__(self, bot: commands.Bot):
 
         # we need to include a reference to the bot here so we can access its loop later.
