@@ -27,7 +27,7 @@ async def is_blocked():
         # a function that takes ctx as it's only arg, that returns a truethy or falsey value, or raises an exception
     return commands.check(predicate)   
 
-class Fun:
+class Fun(commands.Cog):
     """Fun commands for the bot."""
 
     def __init__(self, bot):
