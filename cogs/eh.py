@@ -5,7 +5,7 @@ import discord
 from datetime import datetime
 from utils.constants import OTHER_ERROR_EMOJI
 
-class CommandErrorHandler:
+class CommandErrorHandler(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
