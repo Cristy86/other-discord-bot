@@ -19,7 +19,7 @@ from utils.constants import BLACK_EMBED, OTHER_ERROR_EMOJI, OTHER_SUCCESS_EMOJI,
 import time
 from typing import Union
 
-class Admin:
+class Admin(commands.Cog):
     """Admin-only commands that make the bot dynamic."""
 
     def __init__(self, bot):
