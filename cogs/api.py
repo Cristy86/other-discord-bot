@@ -20,7 +20,7 @@ from pyfiglet import figlet_format
 from utils.constants import GREY_EMBED, OTHER_ERROR_EMOJI, BLOCKED, BLACK_EMBED
 import praw
 
-class API:
+class API(commands.Cog):
     """API Commands for the bot."""
 
     def __init__(self, bot):
