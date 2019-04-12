@@ -20,7 +20,7 @@ from pyfiglet import figlet_format
 from discord import Embed
 from utils.constants import BOT_GUILD_ID, BANNED_LOG_CHANNEL_ID, ADDED_REMOVED_CHANNEL_ID
 
-class Events:
+class Events(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
